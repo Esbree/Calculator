@@ -34,3 +34,47 @@ function operate(operator, a, b) {
       return null
   }
 }
+
+
+let firstOperand = 0
+let secondOperand = 0
+let operator = ''
+
+function setFirstOperand(number) {
+  firstOperand = parseInt(number)
+}
+
+function setSecondOperand(number) {
+  secondOperand = parseInt(number)
+}
+
+const numberButtons = document.querySelectorAll('[data-number]')
+const display = document.querySelector('[data-screen]')
+
+numberButtons.forEach((button) => {
+  button.addEventListener('click', function() {
+    display.innerText += button.innerText
+  })
+})
+
+const operationButtons = document.querySelectorAll('[data-operation]')
+const previousDisplay = document.querySelector('[data-previous]')
+
+operationButtons.forEach((button) => {
+  button.addEventListener('click', function() {
+    // firstOperand speichern
+    let number = parseInt(display.innerText)
+    setFirstOperand(number)
+    display.innerText = ''
+    // operator speichern
+    operator = button.innerText
+  })
+})
+
+const equalsButton = document.querySelector('[data-equal]')
+
+equalsButton.addEventListener('click', function() {
+  let number = parseInt(display.innerText)
+  setSecondOperand(number)
+  display.innerText = operate(operator, firstOperand, secondOperand)
+})
