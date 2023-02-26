@@ -1,0 +1,109 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(35, 5, 59, 0.952);
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 800px;
+  height: 1000px;
+  margin-left: -400px;
+  margin-top: -500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 4px rgb(10, 10, 10);
+  border-radius: 16px;
+  background-color: rgb(62, 62, 62);
+  padding: 16px;
+}
+
+/*----------SCREEN----------*/
+
+.screen{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding: 15px;
+  border: solid 3px rgb(10, 10, 10);
+  border-radius: 8px;
+  width: 100%;
+  background-color: rgb(116, 116, 116);
+  font-size: x-large;
+  min-height: 80px;
+}
+
+.screen-last {
+}
+
+.screen-current {
+}
+
+/*----------BUTTONS----------*/
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#clear {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: auto;
+  background-color: rgb(227, 112, 112);
+}
+
+#delete {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  width: auto;
+  background-color: rgb(144, 104, 230);
+}
+
+button {
+  font-size: large;
+  font-weight: 600;
+  border: solid 3px rgb(10, 10, 10);
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  height: 60px;
+  width: 70px;
+  background-color: rgb(227, 227, 227)
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: white;
+}
+
+#clear:hover {
+  background-color: rgb(248, 148, 148);
+}
+
+#delete:hover {
+  background-color: rgb(171, 134, 252);
+}
