@@ -41,11 +41,11 @@ let secondOperand = null
 let operators = []
 
 function setFirstOperand(number) {
-  firstOperand = parseInt(number)
+  firstOperand = parseFloat(number)
 }
 
 function setSecondOperand(number) {
-  secondOperand = parseInt(number)
+  secondOperand = parseFloat(number)
 }
 
 const numberButtons = document.querySelectorAll('[data-number]')
@@ -64,13 +64,13 @@ operationButtons.forEach((button) => {
   button.addEventListener('click', function() {
     operators.push(button.innerText)
     if (firstOperand == null) {
-      setFirstOperand(Number(display.innerText))
+      setFirstOperand(parseFloat(display.innerText))
     }else if (secondOperand == null){
-      setSecondOperand(Number(display.innerText))
+      setSecondOperand(parseFloat(display.innerText))
     }else {
       setFirstOperand(operate(operators[0], firstOperand, secondOperand))
       operators.shift()
-      setSecondOperand(Number(display.innerText))
+      setSecondOperand(parseFloat(display.innerText))
     }
     display.innerText = ''
     console.log(firstOperand, secondOperand, operators);
@@ -83,15 +83,15 @@ equalsButton.addEventListener('click', function() {
   if (operators.length > 1) {
     setFirstOperand(operate(operators[0], firstOperand, secondOperand))
     operators.shift()
-    setSecondOperand(Number(display.innerText))
+    setSecondOperand(parseFloat(display.innerText))
   }
 
   if (operators.length == 1) {
-    setSecondOperand(Number(display.innerText))
+    setSecondOperand(parseFloat(display.innerText))
   }
 
   if (operators.length == 0) {
-    setFirstOperand(Number(display.innerText))
+    setFirstOperand(parseFloat(display.innerText))
     display.innerText = firstOperand
     if (firstOperand == null) {
       display.innerText = 0
