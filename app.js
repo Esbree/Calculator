@@ -35,10 +35,10 @@ function operate(operator, a, b) {
   }
 }
 
-
-let firstOperand = 0
-let secondOperand = 0
-let operator = ''
+let value
+let firstOperand = null
+let secondOperand = null
+let operators = []
 
 function setFirstOperand(number) {
   firstOperand = parseInt(number)
@@ -62,19 +62,42 @@ const previousDisplay = document.querySelector('[data-previous]')
 
 operationButtons.forEach((button) => {
   button.addEventListener('click', function() {
-    // firstOperand speichern
-    let number = parseInt(display.innerText)
-    setFirstOperand(number)
+    operators.push(button.innerText)
+    if (firstOperand == null) {
+      setFirstOperand(Number(display.innerText))
+    }else if (secondOperand == null){
+      setSecondOperand(Number(display.innerText))
+    }else {
+      setFirstOperand(operate(operators[0], firstOperand, secondOperand))
+      operators.shift()
+      setSecondOperand(Number(display.innerText))
+    }
     display.innerText = ''
-    // operator speichern
-    operator = button.innerText
+    console.log(firstOperand, secondOperand, operators);
   })
 })
 
 const equalsButton = document.querySelector('[data-equal]')
 
 equalsButton.addEventListener('click', function() {
-  let number = parseInt(display.innerText)
-  setSecondOperand(number)
-  display.innerText = operate(operator, firstOperand, secondOperand)
+  if (operators.length > 1) {
+    setFirstOperand(operate(operators[0], firstOperand, secondOperand))
+    operators.shift()
+    setSecondOperand(Number(display.innerText))
+  }
+
+  if (operators.length == 1) {
+    setSecondOperand(Number(display.innerText))
+  }
+
+  if (operators.length == 0) {
+    setFirstOperand(Number(display.innerText))
+    display.innerText = firstOperand
+    if (firstOperand == null) {
+      display.innerText = 0
+    }
+  }else {
+    display.innerText = operate(operators[0], firstOperand, secondOperand)
+  }
+
 })
