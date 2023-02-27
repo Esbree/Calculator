@@ -45,7 +45,7 @@ function operate(operator, a, b) {
 let firstOperand = null
 let secondOperand = null
 let operators = []
-let dotButtonState = false
+let dotButtonState = false // kann nur einen Punkt gleichzeitig setzen
 
 /*----------HELPER FUNCTIONS----------*/
 function setFirstOperand(number) {
@@ -62,7 +62,7 @@ const display = document.querySelector('[data-screen]')
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', function() {
-    display.innerText += button.innerText
+    display.innerText += button.innerText // laesst Zahlen auf Display erscheinen
   })
 })
 
