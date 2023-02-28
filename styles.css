@@ -27,6 +27,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .calculator {
@@ -100,4 +101,12 @@ button:hover {
 
 #delete:hover {
   background-color: rgb(171, 134, 252);
+}
+
+footer {
+  margin-top: 150px;
+}
+
+a {
+  color: white;
 }
