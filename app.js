@@ -1,4 +1,8 @@
-/*----------BASIC FUNCTIONS----------*/
+/* eslint-disable no-alert */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-fallthrough */
+/* ----------BASIC FUNCTIONS----------*/
 function add(a, b) {
   return a + b;
 }
@@ -15,7 +19,7 @@ function divide(a, b) {
   return a / b;
 }
 
-/*----------OPERATE FUNCTION----------*/
+/* ----------OPERATE FUNCTION----------*/
 function operate(operator, a, b) {
   a = Number(a); // Variable wird in jedem Fall zu Number
   b = Number(b);
@@ -40,13 +44,13 @@ function operate(operator, a, b) {
   }
 }
 
-/*----------VARIABLES----------*/
+/* ----------VARIABLES----------*/
 let firstOperand = null;
 let secondOperand = null;
 let operators = [];
 let dotButtonState = false; // kann nur einen Punkt gleichzeitig setzen
 
-/*----------HELPER FUNCTIONS----------*/
+/* ----------HELPER FUNCTIONS----------*/
 function setFirstOperand(number) {
   firstOperand = parseFloat(number);
 }
@@ -55,21 +59,21 @@ function setSecondOperand(number) {
   secondOperand = parseFloat(number);
 }
 
-/*----------NUMBER BUTTONS----------*/
+/* ----------NUMBER BUTTONS----------*/
 const numberButtons = document.querySelectorAll('[data-number]');
 const display = document.querySelector('[data-screen]');
 
 numberButtons.forEach((button) => {
-  button.addEventListener('click', function () {
+  button.addEventListener('click', () => {
     display.innerText += button.innerText; // laesst Zahlen auf Display erscheinen
   });
 });
 
-/*----------OPERATION BUTTONS----------*/
+/* ----------OPERATION BUTTONS----------*/
 const operationButtons = document.querySelectorAll('[data-operation]');
 
 operationButtons.forEach((button) => {
-  button.addEventListener('click', function () {
+  button.addEventListener('click', () => {
     operators.push(button.innerText);
     if (firstOperand == null) {
       setFirstOperand(parseFloat(display.innerText));
@@ -85,19 +89,19 @@ operationButtons.forEach((button) => {
   });
 });
 
-/*----------EQUALS BUTTON----------*/
+/* ----------EQUALS BUTTON----------*/
 const equalsButton = document.querySelector('[data-equal]');
 
-equalsButton.addEventListener('click', function () {
+equalsButton.addEventListener('click', () => {
   if (operators.length > 1) {
     setFirstOperand(operate(operators[0], firstOperand, secondOperand));
     operators.shift();
     setSecondOperand(parseFloat(display.innerText));
   }
-  if (operators.length == 1) {
+  if (operators.length === 1) {
     setSecondOperand(parseFloat(display.innerText));
   }
-  if (operators.length == 0) {
+  if (operators.length === 0) {
     setFirstOperand(parseFloat(display.innerText));
     display.innerText = firstOperand;
     if (firstOperand == null) {
@@ -109,10 +113,10 @@ equalsButton.addEventListener('click', function () {
   dotButtonState = false;
 });
 
-/*----------CLEAR BUTTON----------*/
+/* ----------CLEAR BUTTON----------*/
 const clearButton = document.querySelector('[data-clear]');
 
-clearButton.addEventListener('click', function () {
+clearButton.addEventListener('click', () => {
   display.innerText = '';
   firstOperand = null;
   secondOperand = null;
@@ -120,13 +124,13 @@ clearButton.addEventListener('click', function () {
   dotButtonState = false;
 });
 
-/*----------DELETE BUTTON----------*/
+/* ----------DELETE BUTTON----------*/
 const deleteButton = document.querySelector('[data-delete]');
 
-deleteButton.addEventListener('click', function () {
-  if (display.innerText != '') {
+deleteButton.addEventListener('click', () => {
+  if (display.innerText !== '') {
     let displayStr = display.innerText;
-    if (display.innerText.charAt(displayStr.length - 1) == '.') {
+    if (display.innerText.charAt(displayStr.length - 1) === '.') {
       dotButtonState = false;
     }
     displayStr = displayStr.slice(0, -1);
@@ -134,10 +138,10 @@ deleteButton.addEventListener('click', function () {
   }
 });
 
-/*----------DOT BUTTON----------*/
+/* ----------DOT BUTTON----------*/
 const dotButton = document.querySelector('[data-dot]');
 
-dotButton.addEventListener('click', function () {
+dotButton.addEventListener('click', () => {
   if (!dotButtonState) {
     display.innerText += dotButton.innerText;
     dotButtonState = true;
